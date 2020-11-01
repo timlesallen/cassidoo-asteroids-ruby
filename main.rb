@@ -1,6 +1,6 @@
 =begin
 
- an array of integers representing asteroids in a row, for each
+Given an array of integers representing asteroids in a row, for each
 asteroid, the absolute value represents its size, and the sign represents
 its direction (positive = right, negative = left). Return the state of the
 asteroids after all collisions (assuming they are moving at the same speed).
