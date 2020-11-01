@@ -31,14 +31,11 @@ def sign a
 end
 
 def wins a, b
+  x, y = a.last, b.first
   # Moving in same direction or away from each other
-  x = a.last
-  y = b.first
-  if sign(x) === sign(y) || left(x) && right(y) then
-    'both'
+  if sign(x) === sign(y) || left(x) && right(y) then 'both'
   # Destroy each other
-  elsif x.abs === y.abs then
-    'neither';
+  elsif x.abs === y.abs then 'neither'
   # Biggest wins
   else
     x.abs > y.abs ? 'left' : 'right'
@@ -47,21 +44,20 @@ end
 
 #  Given two sections, what is the result of placing them next to each other?
 def merge a, b
-  if a.length + b.length <= 1
-    return a.concat(b);
-  end
+  if a.length + b.length <= 1 then return a.concat(b) end
   # Make sure both sections have stable state within section
-  a = asteroids(a);
-  b = asteroids(b);
+  a = asteroids(a)
+  b = asteroids(b)
+
   # Now check what happens when they are placed next to each other.
   winner = wins(a, b)
   case winner
   when'neither'
-    merge(a.slice(0, a.length - 1), b.slice(1..)); # Both asteroids at touch point are lost
+    merge(a.slice(0, a.length - 1), b.slice(1..)) # Both asteroids at touch point are lost
   when 'left'
-    merge(a, b.slice(1..)); # Left asteroid at touch point wins
+    merge(a, b.slice(1..)) # Left asteroid at touch point wins
   when 'right'
-    merge(a.slice(0, a.length - 1), b); # Right asteroids at touch point wins
+    merge(a.slice(0, a.length - 1), b) # Right asteroids at touch point wins
   else
     a.concat(b) # These sections are stable next to each other
   end
